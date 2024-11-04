@@ -1,0 +1,15 @@
+sources:
+  in:
+    type: "socket"
+    address: "0.0.0.0:1337"
+    mode: "udp"
+    decoding:
+      codec: "influxdb"
+
+sinks:
+  out:
+    inputs:
+      - "in"
+    type: "console"
+    encoding:
+      codec: "text"

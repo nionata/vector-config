@@ -1,0 +1,14 @@
+sources:
+  in:
+    type: "http_server"
+    address: "0.0.0.0:1337"
+    decoding:
+      codec: "influxdb"
+
+sinks:
+  out:
+    inputs:
+      - "in"
+    type: "console"
+    encoding:
+      codec: "text"
