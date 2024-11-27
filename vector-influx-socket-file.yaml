@@ -6,11 +6,19 @@ sources:
     decoding:
       codec: "influxdb"
 
+transforms:
+  in-tagged:
+    inputs:
+      - "in"
+    type: "remap"
+    source: |-
+      .tags.custom = "hello-world"
+
 sinks:
   out:
     inputs:
-      - "in"
+      - "in-tagged"
     type: "file"
     encoding:
       codec: "native_json"
-    path: "./"
+    path: "./metrics-%s.out"
