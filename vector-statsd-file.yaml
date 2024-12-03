@@ -11,10 +11,19 @@ transforms:
       - "in"
     interval_ms: 10000
 
+  in-stamped:
+    inputs:
+      - "in-aggregated"
+    type: "remap"
+    source: |-
+      if !exists(.timestamp) {
+        .timestamp = now()
+      }
+
 sinks:
   out:
     inputs:
-      - "in-aggregated"
+      - "in-stamped"
     type: "file"
     encoding:
       codec: "native_json"
