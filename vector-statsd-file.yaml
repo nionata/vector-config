@@ -1,0 +1,21 @@
+sources:
+  in:
+    type: "statsd"
+    mode: "udp"
+    address: "127.0.0.1:8125"
+
+transforms:
+  in-aggregated:
+    type: "aggregate"
+    inputs:
+      - "in"
+    interval_ms: 10000
+
+sinks:
+  out:
+    inputs:
+      - "in-aggregated"
+    type: "file"
+    encoding:
+      codec: "native_json"
+    path: "./metrics-%s.out"
