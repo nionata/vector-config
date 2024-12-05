@@ -1,0 +1,22 @@
+sources:
+  in:
+    type: "internal_metrics"
+
+transforms:
+  in-filtered:
+    type: "filter"
+    inputs:
+      - "in"
+    condition: 
+      type: "vrl"
+      source: |-
+        .name == "component_received_events_total" || 
+        .name == "component_received_event_bytes_total"
+
+sinks:
+  out:
+    inputs:
+      - "in-filtered"
+    type: "console"
+    encoding:
+      codec: "native_json"
