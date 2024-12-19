@@ -1,0 +1,14 @@
+sources:
+  in:
+    type: "file"
+    include: 
+      - "/home/nionata/dump/**/metrics.*.out"
+    data_dir: "./data"
+
+sinks:
+  out:
+    inputs:
+      - "in"
+    type: "console"
+    encoding:
+      codec: "text"
