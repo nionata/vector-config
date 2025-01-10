@@ -1,0 +1,13 @@
+sources:
+  in:
+    type: "syslog"
+    mode: "unix"
+    path: "./syslog.sock"
+
+sinks:
+  out:
+    inputs:
+      - "in"
+    type: "console"
+    encoding:
+      codec: "json"

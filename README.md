@@ -65,3 +65,12 @@ podman run -p 1337:1337/udp -i -v $(pwd)/vector-influx-socket-file.yaml:/etc/vec
 2024-11-04T21:05:14.218669Z  INFO vector::app: Loading configs. paths=["/etc/vector/vector.yaml"]
 2024-11-04T21:05:14.220239Z ERROR vector::cli: Configuration error. error=Data type mismatch between in (Metric) and out (Log)
 ```
+
+syslog - `vector-sys-log.yaml`
+
+```bash
+vector --config vector-sys-log.yaml
+{"facility":"user","host":"nionata","hostname":"nionata","message":"hello","severity":"notice","source_ip":"(unnamed)","source_type":"syslog","timestamp":"2025-01-10T19:23:58Z"}
+
+logger -u ./syslog.sock "hello"
+```
